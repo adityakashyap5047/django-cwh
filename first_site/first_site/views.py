@@ -22,4 +22,5 @@ from django.shortcuts import render
 
 # Templates
 def index(request):
-    return render(request, 'index.html')
+    params = {'name': 'Adam', 'place': 'Titan'}
+    return render(request, 'index.html', params)
