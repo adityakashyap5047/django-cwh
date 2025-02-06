@@ -1,1 +1,3 @@
 wsgi - web server gateway interface
+django-admin startproject -> Create a project
+python manage.py runserver -> run the server
