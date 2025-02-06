@@ -58,7 +58,9 @@ def  analyse(request):
     if djnewlineremover == "on":
         analysed = ""
         for char in djtext:
-            if char != '\n':
+            # To detect a new line, we must also consider the carriage return (\r).
+            # In network communication, both newline characters (\n) and carriage returns (\r) are used for data transmission.
+            if char != '\n' and char != '\r':
                 analysed = analysed + char
         djtext = analysed
         params = {'purpose': 'Removed NewLines', 'analysed_text': analysed}
