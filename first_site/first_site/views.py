@@ -41,21 +41,34 @@ def  analyse(request):
     punctuations = '''!()-[]{};:'",<>.\/?@#$%^&*_~`'''
 
     params = {'purpose': 'Your text', 'analysed_text': djtext}
+    purpose = ""
 
     if djremovepunc == "on":
+        if purpose != "":
+            purpose = purpose + " & " + 'Remove Punctuations'
+        else:
+            purpose = 'Remove Punctuations'
         analysed = ""
         for char in djtext:
             if char not in punctuations:
                 analysed = analysed + char
         djtext = analysed
-        params = {'purpose': 'Remove Punctuations', 'analysed_text': analysed}
+        params = {'purpose': purpose, 'analysed_text': analysed}
     if djfullcaps == "on":
+        if purpose != "":
+            purpose = purpose + " & " + 'Upper Case'
+        else:
+            purpose = 'Upper Case'
         analysed = ""
         for char in djtext:
             analysed = analysed + char.upper()
         djtext = analysed
-        params = {'purpose': 'Upper Case', 'analysed_text': analysed}
+        params = {'purpose': purpose, 'analysed_text': analysed}
     if djnewlineremover == "on":
+        if purpose != "":   
+            purpose = purpose + " & " + 'Remove NewLines'
+        else:
+            purpose = 'Remove NewLines'
         analysed = ""
         for char in djtext:
             # To detect a new line, we must also consider the carriage return (\r).
@@ -63,15 +76,23 @@ def  analyse(request):
             if char != '\n' and char != '\r':
                 analysed = analysed + char
         djtext = analysed
-        params = {'purpose': 'Removed NewLines', 'analysed_text': analysed}
+        params = {'purpose': purpose, 'analysed_text': analysed}
     if djextraspaceremover == "on":
+        if purpose != "":
+            purpose = purpose + " & " + 'Remove Extra Space'
+        else:
+            purpose = 'Remove Extra Space'
         analysed = ""
         for index, char in enumerate(djtext):
             if not(djtext[index] == " " and djtext[index + 1] == " "):
                 analysed = analysed + char
         djtext = analysed
-        params = {'purpose': 'Remove Extra Space', 'analysed_text': analysed}
+        params = {'purpose': purpose, 'analysed_text': analysed}
     if djcharcount == "on":
-        params = {'purpose': 'Count Character', 'analysed_text': f"{djtext} <--> LENGTH - {len(djtext)}"}
+        if purpose != "":
+            purpose = purpose + " & " + 'Count Character'
+        else:
+            purpose = 'Count Character'
+        params = {'purpose': purpose, 'analysed_text': f"{djtext} <--> LENGTH - {len(djtext)}"}
     return render(request, 'analyse.html', params)
 
