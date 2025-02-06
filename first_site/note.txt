@@ -1,3 +1,9 @@
 wsgi - web server gateway interface
 django-admin startproject -> Create a project
 python manage.py runserver -> run the server
+
+************** - Templates
+
+To use the templates go to the settings.py and then go to TEMPLATES list and then in DIRS list add 'templates'
+By this we said to django that we have templates folder in which we want to give some templates
+**************
