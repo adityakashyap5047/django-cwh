@@ -30,19 +30,19 @@ def text_analyse(request):
 
 def  analyse(request):
     # access the data
-    djtext = request.GET.get('text', 'default')
-    djtemovepunc = request.GET.get('removepunc', 'off')
-    djfullcaps = request.GET.get('fullcaps', 'off')
-    djnewlineremover = request.GET.get('newlineremover', 'off')
-    djextraspaceremover = request.GET.get('extraspaceremover', 'off')
-    djcharcount = request.GET.get('charcount', 'off')
+    djtext = request.POST.get('text', 'default')
+    djremovepunc = request.POST.get('removepunc', 'off')
+    djfullcaps = request.POST.get('fullcaps', 'off')
+    djnewlineremover = request.POST.get('newlineremover', 'off')
+    djextraspaceremover = request.POST.get('extraspaceremover', 'off')
+    djcharcount = request.POST.get('charcount', 'off')
 
     # punctuation
-    punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~`'''
+    punctuations = '''!()-[]{};:'",<>.\/?@#$%^&*_~`'''
 
     params = {'purpose': 'Your text', 'analysed_text': djtext}
 
-    if djtemovepunc == "on":
+    if djremovepunc == "on":
         analysed = ""
         for char in djtext:
             if char not in punctuations:
@@ -70,6 +70,6 @@ def  analyse(request):
         djtext = analysed
         params = {'purpose': 'Remove Extra Space', 'analysed_text': analysed}
     if djcharcount == "on":
-        params = {'purpose': 'Count Character', 'analysed_text': f"{djtext} -- LENGTH - {len(djtext)}"}
+        params = {'purpose': 'Count Character', 'analysed_text': f"{djtext} <--> LENGTH - {len(djtext)}"}
     return render(request, 'analyse.html', params)
 

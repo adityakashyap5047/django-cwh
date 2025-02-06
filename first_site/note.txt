@@ -9,3 +9,14 @@ By this we said to django that we have templates folder in which we want to give
 We make the templates folder where there is manage.py file is
 
 **************
+
+
+*************** - POST request
+CSRF - Cross Side Request Forger  
+    ---> CSRF Token is a promise which indicates that the request which comes is from your own website
+    ---> This cookie is required for security reasons, to ensure that your browser is not being hijacked by third parties.
+
+To handle it we can 
+
+    In the template for each POST form, 
+        set {% csrf_token %} template tag that targets an internal URL
