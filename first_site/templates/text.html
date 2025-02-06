@@ -7,9 +7,11 @@
 </head>
 <body>
     <h3>Welcome to the text analyser. Enter your text below</h3>
-    <form action="/removepunc" method="get">
-        
+    <form action="/analyse" method="get">
+
         <textarea name="text" style="margin: 0px; width: 721px; height: 93px;"></textarea>
+        <br>
+        <input type="checkbox" name="removepunc">Remove Punctuations<br>
         <button type="submit">Analyse text</button>
     </form>
 </body>

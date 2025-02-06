@@ -37,6 +37,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('text', views.text_analyse, name='text_analyser'),
-    path('removepunc', views.removepunc, name='rempun'),
+    path('text', views.text_analyse, name='text'),
+    path('analyse', views.analyse, name='analyse_text'),
 ]

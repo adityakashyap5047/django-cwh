@@ -28,7 +28,8 @@ def index(request):
 def text_analyse(request):
     return render(request, 'text.html')
 
-def  removepunc(request):
+def  analyse(request):
         djtext = request.GET.get('text', 'default')
+        djtemovepunc = request.GET.get('removepunc', 'off')
         print(djtext)
         return HttpResponse("remove punc <a href='/'>back</a>")
