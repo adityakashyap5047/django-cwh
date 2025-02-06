@@ -1,6 +1,7 @@
 # # I have created this file  - Aditya Kumar
 
 from django.http import HttpResponse
+from django.shortcuts import render
 
 # def index(request):
 #     return HttpResponse("Hello from 1st site")
@@ -17,3 +18,7 @@ from django.http import HttpResponse
 
 # def capfirst(request):
 #     return HttpResponse("Capatalize first <a href='/'>back</a>")
+
+# Templates
+def index(request):
+    return render(request, 'index.html')

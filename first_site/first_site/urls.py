@@ -25,9 +25,15 @@ from . import views
 # ]
 
 # Laying the pipeline
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', views.index, name='index'),
+#     path('removepunc', views.removepunc, name='rempun'),
+#     path('capfirst', views.capfirst, name='capfirst'),
+# ]
+
+# Templates
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('removepunc', views.removepunc, name='rempun'),
-    path('capfirst', views.capfirst, name='capfirst'),
 ]
