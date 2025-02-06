@@ -24,3 +24,10 @@ from . import views
 #     path('about', views.about, name='about')
 # ]
 
+# Laying the pipeline
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('removepunc', views.removepunc, name='rempun'),
+    path('capfirst', views.capfirst, name='capfirst'),
+]
