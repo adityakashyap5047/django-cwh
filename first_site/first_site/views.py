@@ -24,3 +24,11 @@ from django.shortcuts import render
 def index(request):
     params = {'name': 'Adam', 'place': 'Titan'}
     return render(request, 'index.html', params)
+
+def text_analyse(request):
+    return render(request, 'text.html')
+
+def  removepunc(request):
+        djtext = request.GET.get('text', 'default')
+        print(djtext)
+        return HttpResponse("remove punc <a href='/'>back</a>")
