@@ -6,3 +6,12 @@ in django:
 
     To create an app in project we can run the command 
         python manage.py startapp app_name
+
+        Now to add the urls of app_name in your project you can
+            from django.urls import path, include 
+            urlpatterns = [
+                path('url_path/', include('app_name.urls'))
+            ]
+
+            and Now in your app_name create a urls.py file and create the urlpatterns list there and include the url there
+
