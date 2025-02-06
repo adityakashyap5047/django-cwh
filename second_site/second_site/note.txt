@@ -1,0 +1,8 @@
+in django:
+    there may be multiple apps in a project 
+    and also one app may be in multiple projects
+
+    App is a plugable web application 
+
+    To create an app in project we can run the command 
+        python manage.py startapp app_name
