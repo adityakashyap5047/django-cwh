@@ -13,7 +13,7 @@ def index(request):
     return HttpResponse("Home")
 
 def  removepunc(request):
-    return HttpResponse("remove punc")
+    return HttpResponse("remove punc <a href='/'>back</a>")
 
 def capfirst(request):
-    return HttpResponse("Capatalize first")
+    return HttpResponse("Capatalize first <a href='/'>back</a>")
