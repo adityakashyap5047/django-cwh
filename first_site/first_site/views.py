@@ -29,20 +29,26 @@ def text_analyse(request):
     return render(request, 'text.html')
 
 def  analyse(request):
-        # access the data
-        djtext = request.GET.get('text', 'default')
-        djtemovepunc = request.GET.get('removepunc', 'off')
+    # access the data
+    djtext = request.GET.get('text', 'default')
+    djtemovepunc = request.GET.get('removepunc', 'off')
+    djfullcaps = request.GET.get('fullcaps', 'off')
 
-        # punctuation
-        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+    # punctuation
+    punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~`'''
 
-        analysed = ""
+    analysed = ""
 
-        if djtemovepunc == "on":
-            for char in djtext:
-                if char not in punctuations:
-                    analysed = analysed + char
-            params = {'purpose': 'Remove Punctuations', 'analysed_text': analysed}
-        else:
-            params = {'purpose': 'Remove Punctuations', 'analysed_text': djtext}
-        return render(request, 'analyse.html', params)
+    if djtemovepunc == "on":
+        for char in djtext:
+            if char not in punctuations:
+                analysed = analysed + char
+        params = {'purpose': 'Remove Punctuations', 'analysed_text': analysed}
+    elif djfullcaps == "on":
+        for char in djtext:
+            analysed = analysed + char.upper()
+        params = {'purpose': 'Upper Case', 'analysed_text': analysed}
+    else:
+        params = {'purpose': 'Your text', 'analysed_text': djtext}
+    return render(request, 'analyse.html', params)
+

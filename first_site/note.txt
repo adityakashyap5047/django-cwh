@@ -7,4 +7,5 @@ python manage.py runserver -> run the server
 To use the templates go to the settings.py and then go to TEMPLATES list and then in DIRS list add 'templates'
 By this we said to django that we have templates folder in which we want to give some templates
 We make the templates folder where there is manage.py file is
+
 **************
