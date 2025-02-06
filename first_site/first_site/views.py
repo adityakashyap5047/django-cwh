@@ -29,7 +29,20 @@ def text_analyse(request):
     return render(request, 'text.html')
 
 def  analyse(request):
+        # access the data
         djtext = request.GET.get('text', 'default')
         djtemovepunc = request.GET.get('removepunc', 'off')
-        print(djtext)
-        return HttpResponse("remove punc <a href='/'>back</a>")
+
+        # punctuation
+        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+
+        analysed = ""
+
+        if djtemovepunc == "on":
+            for char in djtext:
+                if char not in punctuations:
+                    analysed = analysed + char
+            params = {'purpose': 'Remove Punctuations', 'analysed_text': analysed}
+        else:
+            params = {'purpose': 'Remove Punctuations', 'analysed_text': djtext}
+        return render(request, 'analyse.html', params)
