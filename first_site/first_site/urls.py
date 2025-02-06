@@ -18,19 +18,20 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('', views.index, name='index'),
-#     path('about', views.about, name='about')
-# ]
+# Starting with the django
+    # urlpatterns = [
+    #     path('admin/', admin.site.urls),
+    #     path('', views.index, name='index'),
+    #     path('about', views.about, name='about')
+    # ]
 
 # Laying the pipeline
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('', views.index, name='index'),
-#     path('removepunc', views.removepunc, name='rempun'),
-#     path('capfirst', views.capfirst, name='capfirst'),
-# ]
+    # urlpatterns = [
+    #     path('admin/', admin.site.urls),
+    #     path('', views.index, name='index'),
+    #     path('removepunc', views.removepunc, name='rempun'),
+    #     path('capfirst', views.capfirst, name='capfirst'),
+    # ]
 
 # Templates
 urlpatterns = [
