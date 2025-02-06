@@ -34,6 +34,7 @@ def  analyse(request):
     djtemovepunc = request.GET.get('removepunc', 'off')
     djfullcaps = request.GET.get('fullcaps', 'off')
     djnewlineremover = request.GET.get('newlineremover', 'off')
+    djextraspaceremover = request.GET.get('extraspaceremover', 'off')
 
     # punctuation
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~`'''
@@ -49,11 +50,16 @@ def  analyse(request):
         for char in djtext:
             analysed = analysed + char.upper()
         params = {'purpose': 'Upper Case', 'analysed_text': analysed}
-    elif (djnewlineremover == "on"):
+    elif djnewlineremover == "on":
         for char in djtext:
             if char != '\n':
                 analysed = analysed + char
         params = {'purpose': 'Removed NewLines', 'analysed_text': analysed}
+    elif djextraspaceremover == "on":
+        for index, char in enumerate(djtext):
+            if not(djtext[index] == " " and djtext[index + 1] == " "):
+                analysed = analysed + char
+        params = {'purpose': 'Remove Extra Space', 'analysed_text': analysed}
     else:
         params = {'purpose': 'Your text', 'analysed_text': djtext}
     return render(request, 'analyse.html', params)
