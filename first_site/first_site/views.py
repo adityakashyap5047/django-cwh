@@ -40,30 +40,36 @@ def  analyse(request):
     # punctuation
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~`'''
 
-    analysed = ""
+    params = {'purpose': 'Your text', 'analysed_text': djtext}
 
     if djtemovepunc == "on":
+        analysed = ""
         for char in djtext:
             if char not in punctuations:
                 analysed = analysed + char
+        djtext = analysed
         params = {'purpose': 'Remove Punctuations', 'analysed_text': analysed}
-    elif djfullcaps == "on":
+    if djfullcaps == "on":
+        analysed = ""
         for char in djtext:
             analysed = analysed + char.upper()
+        djtext = analysed
         params = {'purpose': 'Upper Case', 'analysed_text': analysed}
-    elif djnewlineremover == "on":
+    if djnewlineremover == "on":
+        analysed = ""
         for char in djtext:
             if char != '\n':
                 analysed = analysed + char
+        djtext = analysed
         params = {'purpose': 'Removed NewLines', 'analysed_text': analysed}
-    elif djextraspaceremover == "on":
+    if djextraspaceremover == "on":
+        analysed = ""
         for index, char in enumerate(djtext):
             if not(djtext[index] == " " and djtext[index + 1] == " "):
                 analysed = analysed + char
+        djtext = analysed
         params = {'purpose': 'Remove Extra Space', 'analysed_text': analysed}
-    elif djcharcount == "on":
+    if djcharcount == "on":
         params = {'purpose': 'Count Character', 'analysed_text': f"{djtext} -- LENGTH - {len(djtext)}"}
-    else:
-        params = {'purpose': 'Your text', 'analysed_text': djtext}
     return render(request, 'analyse.html', params)
 
