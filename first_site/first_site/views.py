@@ -35,6 +35,7 @@ def  analyse(request):
     djfullcaps = request.GET.get('fullcaps', 'off')
     djnewlineremover = request.GET.get('newlineremover', 'off')
     djextraspaceremover = request.GET.get('extraspaceremover', 'off')
+    djcharcount = request.GET.get('charcount', 'off')
 
     # punctuation
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~`'''
@@ -60,6 +61,8 @@ def  analyse(request):
             if not(djtext[index] == " " and djtext[index + 1] == " "):
                 analysed = analysed + char
         params = {'purpose': 'Remove Extra Space', 'analysed_text': analysed}
+    elif djcharcount == "on":
+        params = {'purpose': 'Count Character', 'analysed_text': f"{djtext} -- LENGTH - {len(djtext)}"}
     else:
         params = {'purpose': 'Your text', 'analysed_text': djtext}
     return render(request, 'analyse.html', params)
