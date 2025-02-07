@@ -95,3 +95,18 @@ To upload the media files in our website we can:
         urlpatterns = [
             # your url paths
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+To access the database from shell(CLI) we can:
+    python manage.py shell
+    from app.models import table_name   # it import the table_name from the models.py
+    table_name.objects.all()            # it displays all the entity of the table table_name
+    
+    to add the new product in our database using shell we can:
+        from django.utils import timezone # to use the current time
+        myprod = Product(product_name="mouse", category="computer", subCategory="devices", price=12, desc="chhota h yai", pub_date=timezone.now())
+        myprod.save()       # to save the changes
+
+        # accessing the data based on the constraints
+        a = Product.objects.get(product_name="mouse")
+        a.category
