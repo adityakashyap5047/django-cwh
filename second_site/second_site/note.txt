@@ -49,3 +49,16 @@ Models -> A model is the single, definite source of information about your data.
             if we create migration then we doesn't change the database instead of we only store the information that we are only doing this changes and this changes will to come
 
             and if we apply those migration then we do the change in the database
+
+    
+    To create the model in django we can:
+        from django.db import models
+
+        # Create your models here.
+        class Product(models.Model):
+            product_id = models.AutoField    # models field reference
+            # place other field as your requirement
+
+    Now in the settings.py file of our project:
+        go into the INSTALLED_APPS list and then replace the app_name with the 'app_name.apps.App_nameConfig'
+         
