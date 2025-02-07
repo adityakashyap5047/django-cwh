@@ -1,0 +1,9 @@
+{% for product in products %} 
+    <p>{{ product.product_name }}</p>  
+    <p>{{ product.category }}</p>  
+    <p>{{ product.subCategory }}</p>  
+    <p>{{ product.desc }}</p>  
+    <p>{{ product.pub_date }}</p>
+    <img src="media/{{ product.image }}" alt="product image">
+    <hr>
+{% endfor %}

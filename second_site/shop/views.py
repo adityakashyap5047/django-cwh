@@ -1,5 +1,6 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Product
 
 # Create your views here.
 def index(request):
@@ -17,8 +18,9 @@ def tracker(request):
 def search(request):
     return HttpResponse("Hello from search")
 
-def prodView(request):
-    return HttpResponse("Hello from product view")
+def prodView(request):  
+    proudcts = Product.objects.all()  # Get all records
+    return render(request, 'shop/product.html', {'products': proudcts})
 
 def checkOut(request):
     return HttpResponse("Hello from check out")
