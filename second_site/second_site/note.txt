@@ -25,3 +25,5 @@ in django:
                 {% load static %}
                 and then print the value of static file by:
                     {% static 'shop/mystatic.txt' %}
+
+        
