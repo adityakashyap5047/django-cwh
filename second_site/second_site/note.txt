@@ -79,3 +79,19 @@ If we make any table in models.py then we need to register our table in admin.py
         from .models import table_name
 
         admin.site.register(table_name)
+
+To upload the media files in our website we can:
+    go to settings.py file of the project and then:
+        import os
+
+        # Managing media 
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+        MEDIA_URL = '/media/'
+
+    then go to the urls.py of the project and then do:
+        from django.conf import settings
+        from django.conf.urls.static import static
+
+        urlpatterns = [
+            # your url paths
+        ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
