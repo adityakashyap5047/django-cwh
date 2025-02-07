@@ -18,3 +18,10 @@ in django:
         Now to add the template in the app:
             go to the settings.py of your project and then in the 'INSTALLED_APPS' list append your app_name
             and then in your app create a templates folder
+
+        To add the static file in the app:
+            create a static folder
+            go to the template and load the static file by: 
+                {% load static %}
+                and then print the value of static file by:
+                    {% static 'shop/mystatic.txt' %}
