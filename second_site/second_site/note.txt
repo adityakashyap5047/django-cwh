@@ -67,3 +67,15 @@ Models -> A model is the single, definite source of information about your data.
 
     Now to apply the migration we can:
         python manage.py migrate 
+
+
+To create the superuser in django we can:
+    python manage.py createsuperuser
+
+If we make any table in models.py then we need to register our table in admin.py
+
+    To register the table we can:
+
+        from .models import table_name
+
+        admin.site.register(table_name)
