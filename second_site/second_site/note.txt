@@ -61,4 +61,9 @@ Models -> A model is the single, definite source of information about your data.
 
     Now in the settings.py file of our project:
         go into the INSTALLED_APPS list and then replace the app_name with the 'app_name.apps.App_nameConfig'
-         
+
+    Now to store the migration we can:
+        python manage.py makemigrations
+
+    Now to apply the migration we can:
+        python manage.py migrate 
