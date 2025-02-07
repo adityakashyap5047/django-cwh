@@ -15,3 +15,6 @@ in django:
 
             and Now in your app_name create a urls.py file and create the urlpatterns list there and include the url there
 
+        Now to add the template in the app:
+            go to the settings.py of your project and then in the 'INSTALLED_APPS' list append your app_name
+            and then in your app create a templates folder
