@@ -110,3 +110,16 @@ To access the database from shell(CLI) we can:
         # accessing the data based on the constraints
         a = Product.objects.get(product_name="mouse")
         a.category
+
+Template Inheritance:  --- it works on DRY(Donot Repeat YourSelf) principle
+    It allows you to create a base template with common elements (like headers, footers, and navigation bars)
+        and extend it in other templates. 
+    This helps avoid code duplication and makes maintaining templates easier.
+
+    To inherit the base template we can use {% extends %} for ex:
+        {% extends 'shop/basic.html' %}     # i.e. template inherits the structure from basic.html, making it reusable across multiple pages.
+        
+        Django uses {% block %}...{% endblock %} to define sections that child templates can override.
+            For ex:
+                {% block title %}{% endblock %}
+                    This block allows child templates to insert specific content (e.g., page title) while keeping the base structure intact.
