@@ -27,3 +27,25 @@ in django:
                     {% static 'shop/mystatic.txt' %}
 
         
+Models -> A model is the single, definite source of information about your data.
+            It contains the essential fields and behabiors of the data you are storing.
+            Generally, each model maps to a single database table.
+
+    
+    django default stores the data in the sqlite3 database
+
+    sqlite is a RDBMS that stores the data in the files.
+
+    To apply all the migration in our project we run the command:
+        python manage.py migrate
+    
+    migrate -> It applies all pending database migrations.
+ 
+        i.e. it ensures that the necessary tables and schema changes are created as defined in the project's migration files. 
+
+        This process synchronizes the database structure with the models defined in the application.
+
+        migration - In simple words migration means the changes which we do in model we store that
+            if we create migration then we doesn't change the database instead of we only store the information that we are only doing this changes and this changes will to come
+
+            and if we apply those migration then we do the change in the database
