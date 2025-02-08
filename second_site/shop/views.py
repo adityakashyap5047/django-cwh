@@ -74,6 +74,12 @@ def about(request):
     return render(request, 'shop/about.html')
 
 def contact(request):
+    if (request.method == "POST"):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        desc = request.POST.get('desc')
+        
     return render(request, 'shop/contact.html')
 
 def tracker(request):
