@@ -106,5 +106,15 @@
         console.log(Object.keys(cart).length)
       })
     })
+
+    // popover trigger
+    document.addEventListener('DOMContentLoaded', function() {
+      let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'));
+      let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+    });
+
+    document.getElementById('popcart').setAttribute('data-content', "<h5>Your Shopping Cart: Review and Manage Your Items</h5>")
   </script>
 {% endblock %}
