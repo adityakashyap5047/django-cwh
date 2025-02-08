@@ -88,6 +88,7 @@
     if(localStorage.getItem('cart') === null){
     } else {
       cart = JSON.parse(localStorage.getItem('cart'))
+      document.getElementById('cart').innerHTML = Object.keys(cart).length
     }
 
     const buttons = Array.from(document.getElementsByClassName('cart'))   //converting from html collection to javascript array
@@ -100,7 +101,7 @@
           cart[id] = 1
         }
         localStorage.setItem('cart', JSON.stringify(cart))
-        // console.log(cart)
+        console.log(Object.keys(cart).length)
       })
     })
   </script>
