@@ -95,16 +95,22 @@
 
     <script>
 
-let cart = {}
-    if(localStorage.getItem('cart') === null){
-    } else {
+    let cart = {}
+    if(localStorage.getItem('cart') !== null){
       cart = JSON.parse(localStorage.getItem('cart'))
       document.getElementById('cart').innerHTML = Object.keys(cart).length
       updateCart(cart)
+    } 
+
+    // Function to update the cart count in the navbar
+    function updateCartCount() {
+      document.getElementById('cart').innerHTML = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
     }
 
+    updateCartCount();
+
     const buttons = Array.from(document.getElementsByClassName('cart'))   //converting from html collection to javascript array
-    buttons.map((button) => {
+    buttons.forEach((button) => {
       return button.addEventListener('click', function() {
         let id = this.id;
         if (cart[id] != undefined) {
@@ -113,6 +119,7 @@ let cart = {}
           cart[id] = 1
         }
         localStorage.setItem('cart', JSON.stringify(cart))
+        updateCartCount();
         updateCart(cart);
       })
     })
