@@ -94,29 +94,34 @@
     ></script>
 
     <script>
-      let cart = localStorage.getItem('cart') === null ? {} : JSON.parse(localStorage.getItem('cart'));
 
-      // Function to update the cart count in the navbar
-      function updateCartCount() {
-        document.getElementById('cart').innerHTML = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
+let cart = {}
+    if(localStorage.getItem('cart') === null){
+    } else {
+      cart = JSON.parse(localStorage.getItem('cart'))
+      document.getElementById('cart').innerHTML = Object.keys(cart).length
+      updateCart(cart)
+    }
+
+    const buttons = Array.from(document.getElementsByClassName('cart'))   //converting from html collection to javascript array
+    buttons.map((button) => {
+      return button.addEventListener('click', function() {
+        let id = this.id;
+        if (cart[id] != undefined) {
+          cart[id] += 1
+        } else {
+          cart[id] = 1
+        }
+        localStorage.setItem('cart', JSON.stringify(cart))
+        updateCart(cart);
+      })
+    })
+
+      function updateCart(cart){
+        for(let item in cart){
+          document.getElementById('div'+item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "'> " + cart[item] + " </span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+        }
       }
-
-      // Update the count when the page loads
-      updateCartCount();
-
-      // Convert HTMLCollection to an array and add event listeners to buttons
-      const buttons = Array.from(document.getElementsByClassName('cart'));  
-      buttons.map((button) => {
-        return button.addEventListener('click', function() {
-          let id = this.id;
-          // Increment item count or initialize it if not already in cart
-          cart[id] = (cart[id] || 0) + 1;
-          // Save the updated cart to localStorage
-          localStorage.setItem('cart', JSON.stringify(cart));
-          // Update the cart count in the navbar after adding an item
-          updateCartCount();
-        });
-      });
 
       // popover trigger
       document.addEventListener('DOMContentLoaded', function() {
