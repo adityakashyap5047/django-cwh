@@ -8,7 +8,7 @@
     background-color: blue;
   }
   .col-md-3 img {
-    max-width: 227px;
+    width: 227px;
     height: 242px;
   }
   body .carousel-indicator li {
@@ -25,6 +25,7 @@
   .carousel-control-next {
     top: auto;
     bottom: auto;
+    padding-top: 200px;
   }
   body .no-padding {
     padding-left: 0;
@@ -36,8 +37,9 @@
   <!--Slideshow starts here -->
   {% for product, range, nSlides in allProds %}
 
-  <h1>{{product.0.category}}</h1>
-  <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
+  <h4 class="my-5">Flash Sale On {{product.0.category}} - Recommended Items</h4>
+  <div class="row">
+  <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
     <ul class="carousel-indicators">
       <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
       {% for i in range %}
@@ -75,7 +77,7 @@
     <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
       <span class="carousel-control-next-icon"></span>
     </a>
-
+  </div>
   {% endfor %}
 
 </div>
