@@ -56,7 +56,10 @@ Models -> A model is the single, definite source of information about your data.
 
         # Create your models here.
         class Product(models.Model):
-            product_id = models.AutoField    # models field reference
+            product_id = models.AutoField    # models field reference  
+                # in the models.AutoField if we didn't pass `primary_key=True` like 
+                    `models.AutoField(primary_key=True)` then django automatically create the 
+                    primary key `id` itself.
             # place other field as your requirement
 
     Now in the settings.py file of our project:
