@@ -6,7 +6,7 @@
 
 <div class="container">
     <form action="/shop/contact/" method="post">{% csrf_token %}
-        <h3>Contact Us Regarding any query</h3>
+        <h3 class="mt-3">Contact Us Regarding any query</h3>
         <div class="mb-3 form-group">
           <label for="name" class="form-label">Name</label>
           <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name">
@@ -23,7 +23,7 @@
           <label for="desc" class="form-label">How May We Help You?</label>
           <textarea name="desc" id="desc" class="form-control" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
 </div>
 
