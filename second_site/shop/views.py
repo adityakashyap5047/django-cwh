@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Product
 from math import ceil
@@ -75,17 +74,16 @@ def about(request):
     return render(request, 'shop/about.html')
 
 def contact(request):
-    return HttpResponse("Hello from contact")
+    return render(request, 'shop/contact.html')
 
 def tracker(request):
-    return HttpResponse("Hello from tracker")
+    return render(request, 'shop/tracker.html')
 
 def search(request):
-    return HttpResponse("Hello from search")
+    return render(request, 'shop/search.html')
 
 def prodView(request):  
-    proudcts = Product.objects.all()  # Get all records
-    return render(request, 'shop/product.html', {'products': proudcts})
+    return render(request, 'shop/prodView.html')
 
 def checkOut(request):
-    return HttpResponse("Hello from check out")
+    return render(request, 'shop/checkout.html')
