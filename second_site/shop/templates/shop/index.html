@@ -59,7 +59,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">{{i.product_name}}</h5>
-              <p class="card-text">{{i.desc}}.</p>
+              <p class="card-text">{{i.desc|slice:": 53"}}...</p>
               <button id="pr{{i.id}}" class="cart btn btn-primary">Add to Cart</button>
               <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="cart btn btn-primary">Quick View</button></a>
             </div>
