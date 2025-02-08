@@ -83,39 +83,3 @@
 
 </div>
 {% endblock %}
-
-
-{% block js %} 
-  <script>
-    let cart = {}
-    if(localStorage.getItem('cart') === null){
-    } else {
-      cart = JSON.parse(localStorage.getItem('cart'))
-      document.getElementById('cart').innerHTML = Object.keys(cart).length
-    }
-
-    const buttons = Array.from(document.getElementsByClassName('cart'))   //converting from html collection to javascript array
-    buttons.map((button) => {
-      return button.addEventListener('click', function() {
-        let id = this.id;
-        if (cart[id] != undefined) {
-          cart[id] += 1
-        } else {
-          cart[id] = 1
-        }
-        localStorage.setItem('cart', JSON.stringify(cart))
-        console.log(Object.keys(cart).length)
-      })
-    })
-
-    // popover trigger
-    document.addEventListener('DOMContentLoaded', function() {
-      let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'));
-      let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl);
-      });
-    });
-
-    document.getElementById('popcart').setAttribute('data-content', "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6>")
-  </script>
-{% endblock %}
