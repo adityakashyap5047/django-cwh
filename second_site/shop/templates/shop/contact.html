@@ -4,7 +4,27 @@
 
 {% block body %} 
 
-    <h1>Cotact us</h1>
-    <p>Hello contact us page</p>
+<div class="container">
+    <form action="/shop/contact">
+        <h3>Contact Us Regarding any query</h3>
+        <div class="mb-3 form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name">
+        </div>
+        <div class="mb-3 form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email">
+        </div>
+        <div class="mb-3 form-group">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter Your Phone">
+        </div>
+        <div class="mb-3 form-group">
+          <label for="desc" class="form-label">How May We Help You?</label>
+          <textarea name="desc" id="desc" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
 
 {% endblock %}
