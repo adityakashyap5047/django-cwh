@@ -57,7 +57,7 @@
             <div class="card-body">
               <h5 class="card-title">{{product.0.product_name}}</h5>
               <p class="card-text">{{product.0.desc}}</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
+              <button id="pr{{product.0.id}}" class="cart btn btn-primary">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
             <div class="card-body">
               <h5 class="card-title">{{i.product_name}}</h5>
               <p class="card-text">{{i.desc}}.</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
+              <button id="pr{{i.id}}" class="cart btn btn-primary">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -94,4 +94,29 @@
   {% endfor %}
 
 </div>
+{% endblock %}
+
+
+{% block js %} 
+  <script>
+    let cart = {}
+    if(localStorage.getItem('cart') === null){
+    } else {
+      cart = JSON.parse(localStorage.getItem('cart'))
+    }
+
+    const buttons = Array.from(document.getElementsByClassName('cart'))   //converting from html collection to javascript array
+    buttons.map((button) => {
+      return button.addEventListener('click', function() {
+        let id = this.id;
+        if (cart[id] != undefined) {
+          cart[id] += 1
+        } else {
+          cart[id] = 1
+        }
+        localStorage.setItem('cart', JSON.stringify(cart))
+        // console.log(cart)
+      })
+    })
+  </script>
 {% endblock %}

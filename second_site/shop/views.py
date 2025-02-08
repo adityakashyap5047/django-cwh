@@ -18,7 +18,9 @@ def index(request):
         {'category': 'Clothing', 'id': 5},
     ]"""
 
-    catProds = Product.objects.values('category', 'id') 
+    catProds = Product.objects.values('category', 'id')
+    
+     
     """
         #This line creates a set of unique categories from the catProds queryset using a set comprehension. Using a set ensures that each category appears only once
 
