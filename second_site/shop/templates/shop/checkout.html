@@ -64,6 +64,10 @@
       if (localStorage.getItem("cart") !== null) {
         cart = JSON.parse(localStorage.getItem("cart"));
       }
+      if($.isEmptyObject(cart)){
+        mystr = `<p>Your Cart is Empty, please add some items to your Cart before checking out</p>`
+        $('#item').append(mystr)
+      } else {
       for(let item in cart){
         let qty = cart[item][0];
         let name = cart[item][1];
@@ -76,7 +80,7 @@
         $('#item').append(mystr)
         
       }
-      document.getElementById('item')
+    }
     </script>
 
 {% endblock %}
