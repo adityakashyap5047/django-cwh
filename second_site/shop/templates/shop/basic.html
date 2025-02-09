@@ -105,7 +105,6 @@
       let cart = {};
       if (localStorage.getItem("cart") !== null) {
         cart = JSON.parse(localStorage.getItem("cart"));
-        document.getElementById("cart").innerHTML = Object.keys(cart).length;
         updateCart(cart);
       }
 
@@ -190,6 +189,16 @@
       // Initial attachment of event listeners
       attachPlusMinusListeners();
 
+      function clearCart(){
+        cart = JSON.parse(localStorage.getItem('cart'));
+        for(let item in cart){
+          document.getElementById('div'+item).innerHTML = '<button id="' + item + '" class="cart btn btn-primary">Add to Cart</button>'
+        }
+        localStorage.clear();
+        cart = {};
+        updateCart(cart);
+      }
+
       // popover trigger
       document.addEventListener("DOMContentLoaded", function () {
         let popoverTriggerList = [].slice.call(
@@ -199,7 +208,6 @@
           return new bootstrap.Popover(popoverTriggerEl);
         });
       });
-        updatePopover(cart);
 
         function updatePopover(cart){
           let popStr = ""
