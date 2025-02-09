@@ -198,13 +198,24 @@
           return new bootstrap.Popover(popoverTriggerEl);
         });
       });
+        updatePopover(cart);
 
-      document
+        function updatePopover(cart){
+          let popStr = ""
+          popStr = popStr + "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6> <div class='mx-2 my-2'>";
+          let i = 1;
+          for(let item in cart){
+            popStr = popStr + "<b>" + i + "</b>. ";
+            popStr = popStr +"<b>"+ document.getElementById('name' + item).innerHTML.slice(0, 15) + "...</b> - Qty: <b>" + cart[item] + "</b><br>";
+            i = i + 1;     
+          }
+          popStr = popStr + "</div>"
+          document
         .getElementById("popcart")
         .setAttribute(
-          "data-content",
-          "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6>"
+          "data-content", popStr
         );
+        }
     </script>
   </body>
 </html>
