@@ -147,6 +147,7 @@
             item +
             "' class='btn btn-primary plus'> + </button>";
         }
+        updatePopover(cart);
         attachPlusMinusListeners();
       }
 
@@ -210,11 +211,9 @@
             i = i + 1;     
           }
           popStr = popStr + "</div>"
-          document
-        .getElementById("popcart")
-        .setAttribute(
-          "data-content", popStr
-        );
+          document.getElementById("popcart").setAttribute("data-content", popStr);
+
+          $("#popcart").popover('show')
         }
     </script>
   </body>
