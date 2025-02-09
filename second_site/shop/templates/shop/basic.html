@@ -118,6 +118,7 @@
 
       updateCartCount();
 
+      function attachAddToEventListeners(){
       const buttons = Array.from(document.getElementsByClassName("cart")); //converting from html collection to javascript array
       buttons.forEach((button) => {
         return button.addEventListener("click", function () {
@@ -134,6 +135,7 @@
           updateCart(cart);
         });
       });
+    }
 
       function updateCart(cart) {
         for (let item in cart) {
@@ -196,7 +198,8 @@
         localStorage.clear();
         cart = {};
         updateCart(cart);
-        updateCartCount()
+        updateCartCount();
+        attachAddToEventListeners();
       }
 
       // popover trigger
