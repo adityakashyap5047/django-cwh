@@ -124,10 +124,9 @@
           let id = this.id;
           if (cart[id] != undefined) {
             let qty = cart[id][0] + 1;
-            cart[id] = [qty, name];
           } else {
             qty = 1;
-            let name = "my item";
+            let name = document.getElementById('name'+id).innerHTML;
             cart[id] = [qty, name];
           }
           localStorage.setItem("cart", JSON.stringify(cart));
