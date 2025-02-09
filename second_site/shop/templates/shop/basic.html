@@ -128,12 +128,15 @@
         for(let item in cart){
           document.getElementById('div'+item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "'> " + cart[item] + " </span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
         }
+        attachPlusMinusListeners();
       }
 
       function updatePlus(item){
         a = item.id.slice(6, )
         cart['pr' + a] = cart['pr' + a] + 1;
         document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
         updateCart(cart);
       }
 
@@ -142,94 +145,13 @@
         cart['pr' + a] = cart['pr' + a] - 1;
         cart['pr' + a] = Math.max(0, cart['pr' + a])
         document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
-        updateCart(cart);
-      }
-
-      // If the plus or minus button is clicked, then change the cart
-const spn = Array.from(document.getElementsByClassName('divpr'));
-
-spn.forEach(s => {
-  const schild = Array.from(s.children);
-  schild.forEach(sc => {
-    sc.addEventListener('click', () => {
-      if (sc.classList.contains('plus')) {
-        updatePlus(sc);
-      } else if (sc.classList.contains('minus')) {
-        updateMinus(sc);
-      }
-    });
-  });
-});
-
-      // popover trigger
-      document.addEventListener('DOMContentLoaded', function() {
-        let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'));
-        let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-          return new bootstrap.Popover(popoverTriggerEl);
-        });
-      });
-  
-      document.getElementById('popcart').setAttribute('data-content', "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6>")
-    </script>
-    
-    <!-- <script>
-      let cart = localStorage.getItem('cart') === null ? {} : JSON.parse(localStorage.getItem('cart'));
-    
-      if(cart !== null){
-        updateCart(cart);
-      }
-    
-      // Function to update the cart count in the navbar
-      function updateCartCount() {
-        document.getElementById('cart').innerHTML = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
-      }
-    
-      // Update the count when the page loads
-      updateCartCount();
-    
-      // Convert HTMLCollection to an array and add event listeners to buttons
-      const buttons = Array.from(document.getElementsByClassName('cart'));  
-      buttons.forEach((button) => {
-        button.addEventListener('click', function() {
-          let id = this.id;
-          // Increment item count or initialize it if not already in cart
-          cart[id] = (cart[id] || 0) + 1;
-          // Save the updated cart to localStorage
-          localStorage.setItem('cart', JSON.stringify(cart));
-          // Update the cart count in the navbar after adding an item
-          updateCartCount();
-          updateCart(cart);
-        });
-      });
-    
-      function updateCart(cart){
-        for(let item in cart){
-          document.getElementById('divpr'+item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "'> " + cart[item] + " </span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
-        }
-        attachPlusMinusListeners();
-      }
-    
-      function updatePlus(item){
-        let a = item.id.slice(6);
-        cart['pr' + a] = cart['pr' + a] + 1;
-        document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
         updateCart(cart);
       }
-    
-      function updateMinus(item){
-        let a = item.id.slice(7);
-        cart['pr' + a] = cart['pr' + a] - 1;
-        cart['pr' + a] = Math.max(0, cart['pr' + a]);
-        document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        updateCart(cart);
-      }
-    
-      // Function to attach event listeners to plus and minus buttons
-      function attachPlusMinusListeners() {
+
+// Function to attach event listeners to plus and minus buttons
+function attachPlusMinusListeners() {
         const spn = Array.from(document.getElementsByClassName('divpr'));
         spn.forEach(s => {
           const schild = Array.from(s.children);
@@ -244,10 +166,10 @@ spn.forEach(s => {
           });
         });
       }
-    
+
       // Initial attachment of event listeners
       attachPlusMinusListeners();
-    
+
       // popover trigger
       document.addEventListener('DOMContentLoaded', function() {
         let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'));
@@ -255,8 +177,9 @@ spn.forEach(s => {
           return new bootstrap.Popover(popoverTriggerEl);
         });
       });
-    
-      document.getElementById('popcart').setAttribute('data-content', "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6>");
-    </script> -->
+  
+      document.getElementById('popcart').setAttribute('data-content', "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6>")
+    </script>
+  
   </body>
 </html>
