@@ -1,10 +1,80 @@
 {% extends 'shop/basic.html' %}
 
-{% block title %} Checkout your order - {% endblock %}
+{% block title %} Checkout - {% endblock %}
 
 {% block body %} 
 
-    <h1>Checkout</h1>
-    <p>Hello from Checkout</p>
+    <div class="container">
+        <div class="col">
+            <h2 class="my-4">Step 1 - MyMate Awesome Express Checkout - Review Your Cart Items</h2>
+        <div id="item">
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Subheading</div>
+                    Content for list item
+                  </div>
+                  <span class="badge bg-primary rounded-pill">14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Subheading</div>
+                    Content for list item
+                  </div>
+                  <span class="badge bg-primary rounded-pill">14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Subheading</div>
+                    Content for list item
+                  </div>
+                  <span class="badge bg-primary rounded-pill">14</span>
+                </li>
+              </ol>
+        </div>
+        </div>
+        <div class="col mb-4">
+            <h2 class="mt-4">Step 2 - Enter Address & Other Details: </h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="1234567890">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St.">
+                </div>
+                <div class="form-group">
+                    <label for="addressline">Address Line</label>
+                    <input type="text" class="form-control" name="addressline" id="addressline" placeholder="Apartment, Studio, or floor">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" id="city" placeholder="City">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" name="state" id="state" placeholder="State">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" name="zip" id="zip" placeholder="zip">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
