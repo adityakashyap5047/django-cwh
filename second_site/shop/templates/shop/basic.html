@@ -197,6 +197,7 @@
         localStorage.clear();
         cart = {};
         updateCart(cart);
+        updateCartCount()
       }
 
       // popover trigger
@@ -218,7 +219,7 @@
             popStr = popStr +"<b>"+ document.getElementById('name' + item).innerHTML.slice(0, 15) + "...</b> - Qty: <b>" + cart[item] + "</b><br>";
             i = i + 1;     
           }
-          popStr = popStr + "</div>"
+          popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-primary' id='checkout'>Check Out</button></a> <button class='btn btn-primary' id='clearcart' onclick='clearCart()'>Clear Cart</button>"
           document.getElementById("popcart").setAttribute("data-content", popStr);
 
           $("#popcart").popover('show')
