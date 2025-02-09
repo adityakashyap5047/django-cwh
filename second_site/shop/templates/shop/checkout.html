@@ -61,6 +61,15 @@
 {% block js %}
 
     <script>
+        // Function to update the cart count in the navbar
+      function updateCartCount() {
+        document.getElementById("cart").innerHTML = Object.values(cart).reduce(
+          (sum, quantity) => sum + quantity[0],
+          0
+        );
+      }
+
+      updateCartCount();
       if (localStorage.getItem("cart") !== null) {
         cart = JSON.parse(localStorage.getItem("cart"));
       }
