@@ -35,3 +35,6 @@ class Orders(models.Model):
     city = models.CharField(max_length=111)
     state = models.CharField(max_length=111)
     zip_code = models.CharField(max_length=111)
+
+    def __str__(self):
+        return 'order_'+str(self.order_id)+'_'
