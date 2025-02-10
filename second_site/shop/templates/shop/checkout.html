@@ -91,6 +91,13 @@
         
       }
     }
+
+    $('#itemsJson').val(JSON.stringify(cart));
+    {% if thank %}
+        alert("Thaks for ordering us. Your order id is {{id}}. Use it to track your order using our order tracker")
+        localStorage.clear();
+        document.location = "/shop"
+    {% endif %}
     </script>
 
 {% endblock %}

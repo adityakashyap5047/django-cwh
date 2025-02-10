@@ -137,6 +137,8 @@
       });
     }
 
+    attachAddToEventListeners();
+
       function updateCart(cart) {
         for (let item in cart) {
           document.getElementById("div" + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" +
