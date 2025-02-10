@@ -16,6 +16,7 @@
             <h2 class="mt-4">Step 2 - Enter Address & Other Details: </h2>
             <form method="post" action="/shop/checkout/">{% csrf_token %}
                 <input type="hidden" name="itemsJson" id="itemsJson">
+                <input type="hidden" id="submitted" value="{{ thank }}">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="name">Name</label>
@@ -93,11 +94,13 @@
     }
 
     $('#itemsJson').val(JSON.stringify(cart));
-    {% if thank %}
+    let isSubmitted = document.getElementById("submitted")
+    console.log(isSubmitted.value)
+    if(isSubmitted == "True"){
         alert("Thaks for ordering us. Your order id is {{id}}. Use it to track your order using our order tracker")
         localStorage.clear();
         document.location = "/shop"
-    {% endif %}
+    }
     </script>
 
 {% endblock %}
