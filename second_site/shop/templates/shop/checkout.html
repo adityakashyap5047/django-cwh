@@ -14,8 +14,8 @@
         </div>
         <div class="col mb-4">
             <h2 class="mt-4">Step 2 - Enter Address & Other Details: </h2>
-            <form method="post" action="/shop/checkout">{% csrf_token %}
-                <input type="hidden" name="itemsJson">
+            <form method="post" action="/shop/checkout/">{% csrf_token %}
+                <input type="hidden" name="itemsJson" id="itemsJson">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="name">Name</label>
@@ -48,8 +48,8 @@
                         <input type="text" class="form-control" name="state" id="state" placeholder="State">
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" name="zip" id="zip" placeholder="zip">
+                        <label for="zip_code">Zip</label>
+                        <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="zip">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Place Order</button>
