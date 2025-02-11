@@ -57,7 +57,7 @@ ROOT_URLCONF = 'second_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['second_site/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
