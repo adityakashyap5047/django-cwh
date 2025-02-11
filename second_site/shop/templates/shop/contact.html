@@ -8,6 +8,7 @@
     <form action="/shop/contact/" method="post">{% csrf_token %}
         <h3 class="mt-3">Contact Us Regarding any query</h3>
         <div class="mb-3 form-group">
+          <input type="hidden" id="submitted" value="{{ thank }}">
           <label for="name" class="form-label">Name</label>
           <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name">
         </div>
@@ -26,5 +27,19 @@
         <button type="submit" class="btn btn-success">Submit</button>
       </form>
 </div>
+
+{% endblock %}
+
+{% block js%}
+
+<script>
+
+  let isSubmitted = document.getElementById("submitted")
+  if(isSubmitted.value == "True"){
+      alert("Thaks for Contacting us. We will get back to you soon!")
+      document.location = "/shop/contact"
+  }
+
+</script>
 
 {% endblock %}
