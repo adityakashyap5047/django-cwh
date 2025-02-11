@@ -169,10 +169,16 @@
         a = item.id.slice(7);
         cart["pr" + a][0] = cart["pr" + a][0] - 1;
         cart["pr" + a][0] = Math.max(0, cart["pr" + a][0]);
-        document.getElementById("valpr" + a).innerHTML = cart["pr" + a][0];
+        if (cart["pr" + a][0] == 0) {
+          delete cart['pr' + a]
+          document.getElementById('divpr'+a).innerHTML = '<button id="pr' + a + '" class="cart btn btn-primary">Add to Cart</button>'
+        } else{
+          document.getElementById("valpr" + a).innerHTML = cart["pr" + a][0];
+        }
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
         updateCart(cart);
+        attachAddToEventListeners();
       }
 
       // Function to attach event listeners to plus and minus buttons
