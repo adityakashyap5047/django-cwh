@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Contact, Orders
+from .models import Product, Contact, Orders, OrderUpadte
 from math import ceil
 
 # Create your views here.
@@ -109,6 +109,9 @@ def checkOut(request):
 
         order = Orders(items_json = items_json, name=name, email=email, phone=phone, address=address, addressline=addressline, city=city, state=state, zip_code=zip_code)
         order.save()
+
+        update = OrderUpadte(order_id=order.order_id, update_desc="This order has been placed")
+        update.save()
 
         thank = True
         id = order.order_id
