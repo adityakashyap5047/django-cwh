@@ -95,8 +95,7 @@
 
     $('#itemsJson').val(JSON.stringify(cart));
     let isSubmitted = document.getElementById("submitted")
-    console.log(isSubmitted.value)
-    if(isSubmitted == "True"){
+    if(isSubmitted.value == "True"){
         alert("Thaks for ordering us. Your order id is {{id}}. Use it to track your order using our order tracker")
         localStorage.clear();
         document.location = "/shop"
