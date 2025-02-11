@@ -5,20 +5,20 @@
         <div class="row">
             <div class="col-md-8 blog-main">
               <h3 class="pb-4 mb-4 font-italic border-bottom">
-                Title
+                {{post.title}}
               </h3>
         
               <div class="blog-post">
-                <h2 class="blog-post-title">Heading</h2>
-                <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+                <h2 class="blog-post-title">{{post.head0}}</h2>
+                <p class="blog-post-meta">{{post.pub_date}} by <a href="https://www.github.com/adityakashyap5047" target="_blank">Aditya</a></p>
         
-                <p>Heading Content</p>
+                <p>{{post.chead0}}</p>
                 <hr>
                 
-                <h3>Sub-heading</h3>
-                <p>Sub-heading content</p>
-                <h3>Sub-heading</h3>
-                <p>Sub-heading content</p>
+                <h3>{{post.head1}}</h3>
+                <p>{{post.chead1}}</p>
+                <h3>{{post.head2}}</h3>
+                <p>{{post.chead2}}</p>
                 
               </div><!-- /.blog-post -->
         
