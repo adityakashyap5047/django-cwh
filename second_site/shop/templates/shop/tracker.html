@@ -28,6 +28,11 @@
                   Enter your order Id and email and click Track Order to find details about your order!
                 </ul>
             </div>
+            <h3 class="mt-4">Your Order Details</h3>
+            <div>
+                <ul class="list-group" id="citem">
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -55,7 +60,8 @@
         
 
         .done(function(data){
-          updates = JSON.parse(data);
+          data = JSON.parse(data);
+          updates = data[0];
           if(updates.length > 0 & updates!={}){
             for(let i = 0; i < updates.length; i++){
               let text = updates[i]['text'];
@@ -73,6 +79,19 @@
                       </li>`
                   
             $('#item').append(mystr)
+          }
+
+          //Fill in the order detail
+          cart = JSON.parse(data[1])
+          for (let item in cart) {
+            let name = cart[item][1]
+            let qty = cart[item][0]
+            let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">${name}</div>
+                          <span class="badge bg-primary rounded-pill">${qty}</span>
+                        `
+                  
+            $('#citem').append(mystr)
           }
         });
 
