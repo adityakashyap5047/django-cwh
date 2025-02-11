@@ -1,10 +1,106 @@
 {% extends 'shop/basic.html' %}
 
-{% block title %} Track - {% endblock %}
+{% block title %} Checkout - {% endblock %}
 
 {% block body %} 
 
-    <h1>Track us</h1>
-    <p>Track your order</p>
+    <div class="container">
+        <div class="col">
+            <h2 class="my-4">MyMate Tracker - Track your orders</h2>
+        <div>
+            <ul class="list-group list-group-numbered" id="item">
+            </ul>
+        </div>
+        </div>
+        <div class="col mb-4">
+            <h2 class="mt-4">Step 2 - Enter Address & Other Details: </h2>
+            <form method="post" action="/shop/checkout/">{% csrf_token %}
+                <input type="hidden" name="itemsJson" id="itemsJson">
+                <input type="hidden" id="submitted" value="{{ thank }}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="1234567890" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St." required>
+                </div>
+                <div class="form-group">
+                    <label for="addressline">Address Line</label>
+                    <input type="text" class="form-control" name="addressline" id="addressline" placeholder="Apartment, Studio, or floor" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" name="state" id="state" placeholder="State" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="zip_code">Zip</label>
+                        <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="zip" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+
+    <script>
+        // Function to update the cart count in the navbar
+      function updateCartCount() {
+        document.getElementById("cart").innerHTML = Object.values(cart).reduce(
+          (sum, quantity) => sum + quantity[0],
+          0
+        );
+      }
+
+      updateCartCount();
+      if (localStorage.getItem("cart") !== null) {
+        cart = JSON.parse(localStorage.getItem("cart"));
+      }
+      if($.isEmptyObject(cart)){
+        mystr = `<p>Your Cart is Empty, please add some items to your Cart before checking out</p>`
+        $('#item').append(mystr)
+      } else {
+      for(let item in cart){
+        let qty = cart[item][0];
+        let name = cart[item][1];
+        
+        let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">${name}</div>
+                        <span class="badge bg-primary rounded-pill">${qty}</span>
+                    </li>`
+                
+        $('#item').append(mystr)
+        
+      }
+    }
+
+    $('#itemsJson').val(JSON.stringify(cart));
+    let isSubmitted = document.getElementById("submitted")
+    console.log(isSubmitted.value)
+    if(isSubmitted == "True"){
+        alert("Thaks for ordering us. Your order id is {{id}}. Use it to track your order using our order tracker")
+        localStorage.clear();
+        document.location = "/shop"
+    }
+    </script>
 
 {% endblock %}
