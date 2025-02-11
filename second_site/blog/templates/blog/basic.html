@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+
+    <!-- title of the webpage -->
+    <title>{% block title %}{% endblock %} MyMate</title>
+
+    <!-- additional css  -->
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">MyMate</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/shop"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shop/tracker">Tracker</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shop/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shop/contact">Contact Us</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+        <button
+          type="button"
+          class="btn btn-secondary mx-2"
+          id="popcart"
+          data-container="body"
+          data-toggle="popover"
+          data-html="true"
+          data-placement="bottom"
+        >
+          Cart(<span id="cart">0</span>)
+        </button>
+      </div>
+    </nav>
+
+    <!-- body of the webpage -->
+    {% block body %} {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let cart = {};
+      if (localStorage.getItem("cart") !== null) {
+        cart = JSON.parse(localStorage.getItem("cart"));
+        updateCart(cart);
+      }
+
+      // Function to update the cart count in the navbar
+      function updateCartCount() {
+        document.getElementById("cart").innerHTML = Object.values(cart).reduce(
+          (sum, quantity) => sum + quantity[0],
+          0
+        );
+      }
+
+      updateCartCount();
+
+      function attachAddToEventListeners(){
+      const buttons = Array.from(document.getElementsByClassName("cart")); //converting from html collection to javascript array
+      buttons.forEach((button) => {
+        return button.addEventListener("click", function () {
+          let id = this.id;
+          if (cart[id] != undefined) {
+            let qty = cart[id][0] + 1;
+          } else {
+            qty = 1;
+            let name = document.getElementById('name'+id).innerHTML;
+            let price = document.getElementById('price'+id).innerHTML;
+            cart[id] = [qty, name, parseInt(price)];
+          }
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartCount();
+          updateCart(cart);
+        });
+      });
+    }
+
+    attachAddToEventListeners();
+
+      function updateCart(cart) {
+        for (let item in cart) {
+          document.getElementById("div" + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" +
+            item +
+            "'> " +
+            cart[item][0] +
+            " </span> <button id='plus" +
+            item +
+            "' class='btn btn-primary plus'> + </button>";
+        }
+        updatePopover(cart);
+        attachPlusMinusListeners();
+      }
+
+      function updatePlus(item) {
+        a = item.id.slice(6);
+        cart["pr" + a][0] = cart["pr" + a][0] + 1;
+        document.getElementById("valpr" + a).innerHTML = cart["pr" + a][0];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        updateCart(cart);
+      }
+
+      function updateMinus(item) {
+        a = item.id.slice(7);
+        cart["pr" + a][0] = cart["pr" + a][0] - 1;
+        cart["pr" + a][0] = Math.max(0, cart["pr" + a][0]);
+        if (cart["pr" + a][0] == 0) {
+          delete cart['pr' + a]
+          document.getElementById('divpr'+a).innerHTML = '<button id="pr' + a + '" class="cart btn btn-primary">Add to Cart</button>'
+        } else{
+          document.getElementById("valpr" + a).innerHTML = cart["pr" + a][0];
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        updateCart(cart);
+        attachAddToEventListeners();
+      }
+
+      // Function to attach event listeners to plus and minus buttons
+      function attachPlusMinusListeners() {
+        const spn = Array.from(document.getElementsByClassName("divpr"));
+        spn.forEach((s) => {
+          const schild = Array.from(s.children);
+          schild.forEach((sc) => {
+            sc.addEventListener("click", () => {
+              if (sc.classList.contains("plus")) {
+                updatePlus(sc);
+              } else if (sc.classList.contains("minus")) {
+                updateMinus(sc);
+              }
+            });
+          });
+        });
+      }
+
+      // Initial attachment of event listeners
+      attachPlusMinusListeners();
+
+      function clearCart(){
+        cart = JSON.parse(localStorage.getItem('cart'));
+        for(let item in cart){
+          document.getElementById('div'+item).innerHTML = '<button id="' + item + '" class="cart btn btn-primary">Add to Cart</button>'
+        }
+        localStorage.clear();
+        cart = {};
+        updateCart(cart);
+        updateCartCount();
+        attachAddToEventListeners();
+      }
+
+      // popover trigger
+      document.addEventListener("DOMContentLoaded", function () {
+        let popoverTriggerList = [].slice.call(
+          document.querySelectorAll('[data-toggle="popover"]')
+        );
+        let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+          return new bootstrap.Popover(popoverTriggerEl);
+        });
+      });
+
+        function updatePopover(cart){
+          let popStr = ""
+          popStr = popStr + "<h5>Your Shopping Cart: </h5><h6>Review and Manage Your Items</h6> <div class='mx-2 my-2'>";
+          let i = 1;
+          for(let item in cart){
+            popStr = popStr + "<b>" + i + "</b>. ";
+            popStr = popStr +"<b>"+ document.getElementById('name' + item).innerHTML.slice(0, 15) + "...</b> - Qty: <b>" + cart[item][0] + "</b><br>";
+            i = i + 1;     
+          }
+          popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-primary' id='checkout'>Check Out</button></a> <button class='btn btn-primary' id='clearcart' onclick='clearCart()'>Clear Cart</button>"
+          document.getElementById("popcart").setAttribute("data-content", popStr);
+
+          $("#popcart").popover('show')
+        }
+    </script>
+    {% block js %} {% endblock %}
+  </body>
+</html>
