@@ -60,7 +60,7 @@
             <div class="card-body">
               <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
               <p class="card-text">{{i.desc|slice:": 53"}}</p>
-              <h6 class="card-title" id="pricepr{{i.id}}">Price: Rs{{i.price}}</h6>
+              <h6 class="card-title">Price: Rs<span id="pricepr{{i.id}}">{{i.price}}</span></h6>
               <span id="divpr{{i.id}}" class="divpr">
                 <button id="pr{{i.id}}" class="cart btn btn-primary">Add to Cart</button>
               </span>

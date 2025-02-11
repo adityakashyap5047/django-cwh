@@ -10,6 +10,9 @@
         <div>
             <ul class="list-group list-group-numbered" id="item">
             </ul>
+            <ol class="breadcrumb mt-2 " style="display: flex; justify-content: end;">
+                <li class="breadcrumb-item active" ><span class="mr-5">Total Price:</span> Rs.<span id="totalPrice"></span></li>
+            </ol>
         </div>
         </div>
         <div class="col mb-4">
@@ -75,6 +78,7 @@
       if (localStorage.getItem("cart") !== null) {
         cart = JSON.parse(localStorage.getItem("cart"));
       }
+      let totalPrice = 0;
       if($.isEmptyObject(cart)){
         mystr = `<p>Your Cart is Empty, please add some items to your Cart before checking out</p>`
         $('#item').append(mystr)
@@ -82,6 +86,8 @@
       for(let item in cart){
         let qty = cart[item][0];
         let name = cart[item][1];
+        let itemPrice = cart[item][2];
+        totalPrice = totalPrice + qty*itemPrice;
         
         let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">${name}</div>
@@ -92,6 +98,8 @@
         
       }
     }
+
+    document.getElementById('totalPrice').innerHTML = totalPrice;
 
     $('#itemsJson').val(JSON.stringify(cart));
     let isSubmitted = document.getElementById("submitted")

@@ -127,7 +127,8 @@
           } else {
             qty = 1;
             let name = document.getElementById('name'+id).innerHTML;
-            cart[id] = [qty, name];
+            let price = document.getElementById('price'+id).innerHTML;
+            cart[id] = [qty, name, parseInt(price)];
           }
           localStorage.setItem("cart", JSON.stringify(cart));
           updateCartCount();
