@@ -6,21 +6,20 @@
 
     <div class="container">
         <div class="col">
-            <h3 class="my-4">MyMate Tracker - Enter your Order Id and Email address to track your order</h3>
-            <form method="post" action="/shop/tracker/">{% csrf_token %}
-                <input type="hidden" name="itemsJson" id="itemsJson">
-                <input type="hidden" id="submitted" value="{{ thank }}">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="name">Order Id</label>
-                        <input type="text" class="form-control" name="orderId" id="orderId" placeholder="Order Id" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Track Order</button>
+          <h3 class="my-4">MyMate Tracker - Enter your Order Id and Email address to track your order</h3>
+          <form method="post" action="#" id="trackerForm">{% csrf_token %}
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="name">Order Id</label>
+                      <input type="text" class="form-control" name="orderId" id="orderId" placeholder="Order Id" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Track Order</button>
+          </form>
         </div>
         <div class="col mb-4">
             <h3 class="mt-4">Your Order Status</h3>
@@ -36,44 +35,41 @@
 {% block js %}
 
     <script>
-        // Function to update the cart count in the navbar
-      function updateCartCount() {
-        document.getElementById("cart").innerHTML = Object.values(cart).reduce(
-          (sum, quantity) => sum + quantity[0],
-          0
-        );
-      }
+      $('#trackerForm').submit(function(event){
 
-      updateCartCount();
-      if (localStorage.getItem("cart") !== null) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-      if($.isEmptyObject(cart)){
-        mystr = `<p>Your Cart is Empty, please add some items to your Cart before checking out</p>`
-        $('#item').append(mystr)
-      } else {
-      for(let item in cart){
-        let qty = cart[item][0];
-        let name = cart[item][1];
+        $('#items').empty();
+        let formData = {
+          'orderId': $('input[name=orderId]').val(),
+          'email': $('input[name=email]').val(),
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        }
+
+        $.ajax({
+          type: 'POST',
+          url: '/shop/tracker/',
+          data: formData,
+          encode: true
+        })
+
         
-        let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">${name}</div>
-                        <span class="badge bg-primary rounded-pill">${qty}</span>
+
+        .done(function(data){
+          updates = JSON.parse(data);
+          for(let i = 0; i < updates.length; i++){
+            let text = updates[i]['text'];
+            let time = updates[i]['time'];
+            let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">${text}</div>
+                        <span class="badge bg-primary rounded-pill">${time}</span>
                     </li>`
                 
-        $('#item').append(mystr)
-        
-      }
-    }
+            $('#item').append(mystr)
+          }
+        });
 
-    $('#itemsJson').val(JSON.stringify(cart));
-    let isSubmitted = document.getElementById("submitted")
-    console.log(isSubmitted.value)
-    if(isSubmitted == "True"){
-        alert("Thaks for ordering us. Your order id is {{id}}. Use it to track your order using our order tracker")
-        localStorage.clear();
-        document.location = "/shop"
-    }
+        event.preventDefault();
+
+      })
     </script>
 
 {% endblock %}

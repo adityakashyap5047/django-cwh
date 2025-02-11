@@ -94,15 +94,18 @@ def tracker(request):
             order = Orders.objects.filter(order_id=orderId, email=email)
             if len(order) > 0:
                 update = OrderUpadte.objects.filter(order_id=orderId)
+                update_list = list(update.values())  # Converts QuerySet to list of dicts
+    
+                print(f"update list {update_list[0]}")  # Debugging
                 updates = []
-                for item in updates:
-                    updates.append({'text': item.update_desc,'time': item.timestamp})
-                    response = json.dumps(updates)
+                for item in update:
+                    updates.append({'text': item.update_desc,'time': str(item.timestamp)[: 10]})
+                    response = json.dumps(updates, default=str)
                     return HttpResponse(response)
             else:
-                pass
-        contact = Contact(name = name, email = email, phone = phone, desc = desc)
-        contact.save()
+                return HttpResponse("error")
+        except Exception as e:
+            return HttpResponse("error")
     return render(request, 'shop/tracker.html')
 
 def search(request):
