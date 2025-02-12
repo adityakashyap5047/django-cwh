@@ -60,9 +60,11 @@
         
 
         .done(function(data){
+          $('#citem').empty();
+          $('#item').empty();
           data = JSON.parse(data);
-          updates = data[0];
-          if(updates.length > 0 & updates!={}){
+          if(data['status'] == 'success'){
+            updates = data['updates'];
             for(let i = 0; i < updates.length; i++){
               let text = updates[i]['text'];
               let time = updates[i]['time'];
@@ -73,25 +75,24 @@
                   
               $('#item').append(mystr)
             }
+            //Fill in the order detail
+            cart = JSON.parse(data['itemsJson'])
+            for (let item in cart) {
+              let name = cart[item][1]
+              let qty = cart[item][0]
+              let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">${name}</div>
+                            <span class="badge bg-primary rounded-pill">${qty}</span>
+                          `
+                    
+              $('#citem').append(mystr)
+            }
           } else {
             let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">Sorry, We are not able to fetch this order id and email. Make sure to type correct order Id and email.</div>
                       </li>`
                   
             $('#item').append(mystr)
-          }
-
-          //Fill in the order detail
-          cart = JSON.parse(data[1])
-          for (let item in cart) {
-            let name = cart[item][1]
-            let qty = cart[item][0]
-            let mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">${name}</div>
-                          <span class="badge bg-primary rounded-pill">${qty}</span>
-                        `
-                  
-            $('#citem').append(mystr)
           }
         });
 
