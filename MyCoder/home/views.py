@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Contact
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
     return render(request, 'home/index.html')
 
 def contact(request):
+    messages.success(request, 'Profile details updated')
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
