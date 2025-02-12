@@ -30,15 +30,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
+            <a class="nav-link {% block blog %}{% endblock blog %}" aria-current="page" href="/blog">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/contact"
-              >Contact</a
-            >
+            <a class="nav-link {% block contact %}{% endblock contact %}" aria-current="page" href="/contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/about">About</a>
+            <a class="nav-link {% block about %}{% endblock about %}" href="/about">About</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
