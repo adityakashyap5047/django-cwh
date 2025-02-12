@@ -3,10 +3,10 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Hello from home app")
+    return render(request, 'home/index.html')
 
 def contact(request):
-    return HttpResponse("Hello from home contact")
+    return render(request, 'home/contact.html')
 
 def about(request):
-    return HttpResponse("Hello from home about")
+    return render(request, 'home/about.html')
