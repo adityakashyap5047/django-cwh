@@ -42,7 +42,8 @@
           </aside><!-- /.blog-sidebar -->
       
         </div>
-        <div class="d-flex justify-content-between mt-4">
+        <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-numposts="5"></div>
+        <div class="d-flex justify-content-between mt-4 col-md-7">
           <div>
             {% if prev_post %}
               <a href="/blog/blogpost/{{prev_post.post_id}}">Previous - {{prev_post.title}}</a>
