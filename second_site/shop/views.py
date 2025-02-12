@@ -144,7 +144,7 @@ def checkOut(request):
 
         thank = True
         id = order.order_id
-        # return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})
+        return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})
 
         # Request paytm to transfer the amount to your account after payment by user
         param_dict={
