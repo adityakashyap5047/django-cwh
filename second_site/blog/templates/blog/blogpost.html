@@ -4,9 +4,10 @@
     <div class="container my-4">
       <div class="row">
           <div class="col-md-8 blog-main">
-            <h3 class="pb-4 mb-4 font-italic border-bottom">
+            <h3 class="pb-4 font-italic">
               {{post.title}}
             </h3>
+            <div class="fb-like border-bottom mb-4 pb-4" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
       
             <div class="blog-post">
               <h2 class="blog-post-title">{{post.head0}}</h2>
