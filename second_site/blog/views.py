@@ -8,4 +8,8 @@ def index(request):
 
 def blogpost(request, id):
     post = Blogpost.objects.filter(post_id=id)[0]
-    return render(request, 'blog/blogpost.html', {'post': post})
+    # .order_by('-post_id'): This orders the filtered results by post_id in descending order (-post_id).
+    previous_post = Blogpost.objects.filter(post_id__lt=id).order_by('-post_id').first()
+    next_post = Blogpost.objects.filter(post_id__gt=id).order_by('post_id').first()
+    context = {'post': post, 'prev_post': previous_post, 'next_post': next_post}
+    return render(request, 'blog/blogpost.html', context)
