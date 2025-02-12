@@ -126,3 +126,10 @@ Template Inheritance:  --- it works on DRY(Donot Repeat YourSelf) principle
             For ex:
                 {% block title %}{% endblock %}
                     This block allows child templates to insert specific content (e.g., page title) while keeping the base structure intact.
+
+
+To reset the password of superuser we can:
+    python manage.py changepassword superuser_username
+
+To create the new superuser we can:
+    pyton manage.py createsuperuser
