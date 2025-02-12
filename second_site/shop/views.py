@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Product, Contact, Orders, OrderUpadte
 from math import ceil
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -140,5 +141,11 @@ def checkOut(request):
 
         thank = True
         id = order.order_id
-        return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})
+        # return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})
+        # Request paytm to transfer the amount to your account after payment by user
     return render(request, 'shop/checkout.html')
+
+@csrf_exempt
+def handleRequest(request):
+    # Paytm will send you the post request here
+    pass
