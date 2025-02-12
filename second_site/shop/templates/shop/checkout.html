@@ -19,6 +19,7 @@
             <h2 class="mt-4">Step 2 - Enter Address & Other Details: </h2>
             <form method="post" action="/shop/checkout/">{% csrf_token %}
                 <input type="hidden" name="itemsJson" id="itemsJson">
+                <input type="hidden" name="amount" id="amount">
                 <input type="hidden" id="submitted" value="{{ thank }}">
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -108,6 +109,8 @@
         localStorage.clear();
         document.location = "/shop"
     }
+
+    $('#amount').val($('#totalPrice').html())
     </script>
 
 {% endblock %}
