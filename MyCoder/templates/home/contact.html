@@ -4,6 +4,28 @@
 
 {% block body %}
 
-    <h1>Welcome to Contact</h1>
+
+    <div class="container mt-4">
+        <h3 class="my-2">Contact MyCoder Admin</h3>
+        <form action="/contact/" method="post">{% csrf_token %}
+            <div class="mb-3 form-group">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your Name" required>
+            </div>
+            <div class="mb-3 form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email" required>
+            </div>
+            <div class="mb-3 form-group">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="phone" name="phone" class="form-control" id="phone" placeholder="Enter Your Phone" required> 
+            </div>
+            <div class="mb-3 form-group">
+              <label for="content" class="form-label">How May We Help You?</label>
+              <textarea name="content" id="content" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+    </div>
 
 {% endblock body %}
