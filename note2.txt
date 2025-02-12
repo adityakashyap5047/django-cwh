@@ -133,3 +133,44 @@ To reset the password of superuser we can:
 
 To create the new superuser we can:
     pyton manage.py createsuperuser
+
+
+slug 
+
+    Dynamic Routes in Django:
+
+    To create dynamic routes in Django, you can use path converters in your `urls.py` file. Path converters allow you to capture values from the URL and pass them to your view functions.
+
+    For example, if you want to create a dynamic route that captures an integer `id`:
+
+    1. In your `urls.py` file, define a URL pattern with a path converter:
+        ```python
+        from django.urls import path
+        from . import views
+
+        urlpatterns = [
+            path('product/<int:id>/', views.product_detail, name='product_detail'),
+        ]
+        ```
+
+    2. In your `views.py` file, create a view function that accepts the captured value as a parameter:
+        ```python
+        from django.shortcuts import render, get_object_or_404
+        from .models import Product
+
+        def product_detail(request, id):
+            product = get_object_or_404(Product, id=id)
+            return render(request, 'product_detail.html', {'product': product})
+        ```
+
+    3. In your template (`product_detail.html`), you can display the product details:
+        ```html
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price }}</p>
+        ```
+
+    You can also use other path converters like `<str:slug>`, `<slug:slug>`, `<uuid:uuid>`, and `<path:path>` to capture different types of values from the URL.
+
+Accessing data from request.method
+    The request.method return the dictionary and we can access the data from that dictionary and the method may be 'GET' or 'POST'
