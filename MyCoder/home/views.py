@@ -8,8 +8,8 @@ def home(request):
     return render(request, 'home/index.html')
 
 def contact(request):
-    messages.success(request, 'Profile details updated')
     if request.method == 'POST':
+        messages.success(request, "Your Message received successfully. We will back to your shortly!!!")
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST['phone']
