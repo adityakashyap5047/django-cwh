@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Home")
+    return HttpResponse("from blog app Home")
 
-def blog(request):
-    return HttpResponse("Blog")
+def blogPost(request, slug):
+    return HttpResponse(f"Blog and {slug}")
