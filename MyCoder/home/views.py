@@ -88,4 +88,6 @@ def handleLogin(request):
         return HttpResponse('404 - Not Found')
 
 def handleLogout(request):
-    pass
+    logout(request)
+    messages.success(request, "Successfully Logged Out")
+    return redirect('/')
