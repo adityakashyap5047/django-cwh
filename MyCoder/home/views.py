@@ -26,5 +26,5 @@ def about(request):
 def search(request):
     search = request.GET.get('search')
     searchPosts = Post.objects.filter(title__icontains=search)
-    context = {'searchPosts': searchPosts}
+    context = {'searchPosts': searchPosts, 'search': search}
     return render(request, 'home/search.html', context)

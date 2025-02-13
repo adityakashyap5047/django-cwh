@@ -5,8 +5,19 @@
 {% block body %}
 
     <div class="container my-4">
+        <h2>Your Search Posts:</h2>
+        {% if searchPosts|length == 0 %}
+        
+            <p>No Search Result</p>
+
+            Your search - <b>{{search}}</b> - did not match any documents. <br>
+            Suggestion 
+            <ul>
+                <li>Try different keywords.</li>
+            </ul>
+        
+        {% endif %}
         {% for post in searchPosts %}
-            <h2>Your Search Posts:</h2>
             <div class="row my-4f no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                 <strong class="d-inline-block mb-2 text-primary">{{post.author}}</strong>
