@@ -47,8 +47,17 @@ def handleSignup(request):
         cnfPass = request.POST['cnfPass']
 
         # Checks for errorneous inputs
+        if (len(username) > 15):
+            messages.error(request, "Username must be under 15 character")
+            return redirect('/')
+        if (not username.isalnum()):
+            messages.error(request, "Username should only contains letters and numbers")
+            return redirect('/')
+        if (pass1 != cnfPass):
+            messages.error(request, "Passwords do not matches")
+            return redirect('/')
 
-        # create the uesr
+        # create the user
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
         myuser.last_name = lname
