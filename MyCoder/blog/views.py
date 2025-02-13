@@ -11,20 +11,20 @@ def home(request):
 
 def blogPost(request, slug):
     post = Post.objects.get(slug=slug)
-    comments = Post.objects.filter(post=post)
+    comments = BlogComment.objects.filter(post=post)
     context = {'post': post, 'comments': comments}
     return render(request, 'blog/blogPost.html', context)
 
 # APIs
 def postComment(request):
     if request.method == 'POST':
-        commnet = request.POST.get("comment")
+        comment = request.POST.get("comment")
         user = request.user
         postSno = request.POST.get("postSno")
         post = Post.objects.get(sno=postSno)
 
-        comment = BlogComment(commnet=commnet, user=user, post=post)
-        commnet.save()
+        comment = BlogComment(comment=comment, user=user, post=post)
+        comment.save()
 
         messages.success(request, "Comment posted successfully")
 

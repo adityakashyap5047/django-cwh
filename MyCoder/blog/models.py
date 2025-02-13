@@ -21,3 +21,6 @@ class BlogComment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE) # if post is deleted then also delete the comments
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
     timeStamp = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return str(self.user)+" -> "+str(self.post)

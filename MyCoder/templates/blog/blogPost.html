@@ -15,6 +15,17 @@
     </div>
     <div class="container">
         <h2>Comments</h2>
+        <form action="/blog/postComment" method="post">{% csrf_token %}
+            <div class="mb-3 form-group">
+                <label for="comment" class="form-label">Comment</label>
+                <input type="text" name="comment" class="form-control" id="comment" placeholder="Write a Comment" required>
+            </div>
+            <div class="mb-3 form-group">
+                <input type="hidden" name="postSno" value="{{post.sno}}">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+              
+        </form>
         <div class="row my-3">
             <div class="col-md-2 bg-primary">Image here</div>
             <div class="col-md-10 bg-info">Comment Here</div>
