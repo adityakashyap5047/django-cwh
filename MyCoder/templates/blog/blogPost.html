@@ -52,7 +52,7 @@
                     <form action="/blog/postComment" method="post">{% csrf_token %}
                         <div class="mb-3 form-group">
                             <label for="reply{{comment.sno}}" class="form-label col-md-10">Reply</label>
-                            <input type="text" name="reply" class="form-control" id="reply{{comment.sno}}" placeholder="Write a Comment" required>
+                            <input type="text" name="comment" class="form-control" id="reply{{comment.sno}}" placeholder="Write a Comment" required>
                             <input type="hidden" name="parentSno" value="{{comment.sno}}">
                         </div>
                         <div class="mb-3 form-group">
