@@ -29,5 +29,7 @@ def search(request):
         searchPosts = []
     else:
         searchPosts = Post.objects.filter(title__icontains=search)
+    if searchPosts.count() == 0:
+        messages.error(request, "No Search results find. Please search the relevant tags!")
     context = {'searchPosts': searchPosts, 'search': search}
     return render(request, 'home/search.html', context)
