@@ -4,7 +4,7 @@ from django.db import models
 class Post(models.Model):
     sno = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
-    content = models.TextField(max_length=1000)
+    content = models.TextField(max_length=100000)
     author = models.CharField(max_length=30)
     timeStamp = models.DateTimeField(blank=True)
 
