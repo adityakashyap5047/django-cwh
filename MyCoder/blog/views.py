@@ -11,8 +11,15 @@ def home(request):
 
 def blogPost(request, slug):
     post = Post.objects.get(slug=slug)
-    comments = BlogComment.objects.filter(post=post)
-    context = {'post': post, 'comments': comments, 'user': request.user}
+    comments = BlogComment.objects.filter(post=post, parent=None)
+    replies = BlogComment.objects.filter(post=post).exclude(parent=None)
+    repDict = {}
+    for reply in replies:
+        if reply.sno not in repDict.keys():
+            repDict[reply.sno] = [reply]
+        else:
+            repDict[reply.sno].append(reply)
+    context = {'post': post, 'comments': comments, 'user': request.user, 'replyDict': repDict}
     return render(request, 'blog/blogPost.html', context)
 
 # APIs

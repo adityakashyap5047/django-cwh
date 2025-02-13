@@ -48,19 +48,24 @@
                     Reply
                 </button>
                 <div class="collapse" id="replyBox{{comment.sno}}">
-                <div class="card card-body">
-                    <form action="/blog/postComment" method="post">{% csrf_token %}
-                        <div class="mb-3 form-group">
-                            <label for="reply{{comment.sno}}" class="form-label col-md-10">Reply</label>
-                            <input type="text" name="comment" class="form-control" id="reply{{comment.sno}}" placeholder="Write a Comment" required>
-                            <input type="hidden" name="parentSno" value="{{comment.sno}}">
-                        </div>
-                        <div class="mb-3 form-group">
-                            <input type="hidden" name="postSno" value="{{post.sno}}">
-                        </div>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
+                    <div class="card card-body">
+                        <form action="/blog/postComment" method="post">{% csrf_token %}
+                            <div class="mb-3 form-group">
+                                <label for="reply{{comment.sno}}" class="form-label col-md-10">Reply</label>
+                                <input type="text" name="comment" class="form-control" id="reply{{comment.sno}}" placeholder="Write a Comment" required>
+                                <input type="hidden" name="parentSno" value="{{comment.sno}}">
+                            </div>
+                            <div class="mb-3 form-group">
+                                <input type="hidden" name="postSno" value="{{post.sno}}">
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
                 </div>
+                <div class="replies bg-danger">
+                    {% for reply in replyDict %}
+                        {{reply}}
+                    {% endfor %}
                 </div>
             </div>
         </div>
