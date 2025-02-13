@@ -6,7 +6,8 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=100000)
     author = models.CharField(max_length=30)
+    slug = models.CharField(max_length=30)
     timeStamp = models.DateTimeField(blank=True)
 
     def __str__(self):
-        return self.title + 'by' + self.author
+        return self.title + ', by -> ' + self.author
