@@ -38,6 +38,7 @@ def search(request):
     context = {'searchPosts': searchPosts, 'search': search}
     return render(request, 'home/search.html', context)
 
+# Authentication APIs
 def handleSignup(request):
     if request.method == 'POST':
         username = request.POST['username']
