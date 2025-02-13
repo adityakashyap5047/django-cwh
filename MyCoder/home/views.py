@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from home.models import Contact
 from blog.models import Post
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -35,3 +36,26 @@ def search(request):
         messages.warning(request, "No Search results find. Please search the relevant tags!")
     context = {'searchPosts': searchPosts, 'search': search}
     return render(request, 'home/search.html', context)
+
+def handleSignup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        email = request.POST['email']
+        pass1 = request.POST['pass1']
+        cnfPass = request.POST['cnfPass']
+
+        # Checks for errorneous inputs
+
+        # create the uesr
+        myuser = User.objects.create_user(username, email, pass1)
+        myuser.first_name = fname
+        myuser.last_name = lname
+        myuser.save()
+
+        messages.success(request, "Your account has been successfully created")
+
+        return redirect('/')
+    else:
+        return HttpResponse('404 - Not Found')

@@ -62,7 +62,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/contact/" method="post">{% csrf_token %}
+        <form action="/signup/" method="post">{% csrf_token %}
           <div class="mb-3 form-group">
             <label for="username" class="form-label">Username</label>
             <input type="text" name="username" class="form-control" id="username" placeholder="Choose your Username" required>
@@ -80,8 +80,8 @@
             <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email" required>
           </div>
           <div class="mb-3 form-group">
-            <label for="pass" class="form-label">Password</label>
-            <input type="password" name="pass" id="pass" class="form-control" placeholder="Enter your Password" required>
+            <label for="pass1" class="form-label">Password</label>
+            <input type="password" name="pass1" id="pass1" class="form-control" placeholder="Enter your Password" required>
           </div>
           <div class="mb-3 form-group">
             <label for="cnfPass" class="form-label">Confirm Password</label>
@@ -105,7 +105,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/contact/" method="post">{% csrf_token %}
+        <form action="/login/" method="post">{% csrf_token %}
           <div class="mb-3 form-group">
             <label for="loginUsername" class="form-label">Username</label>
             <input type="text" name="loginUsername" class="form-control" id="loginUsername" placeholder="Enter your Username" required>
