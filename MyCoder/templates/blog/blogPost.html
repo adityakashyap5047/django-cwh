@@ -26,10 +26,15 @@
             <button type="submit" class="btn btn-success">Submit</button>
               
         </form>
+        {% for comment in comments %}
         <div class="row my-3">
-            <div class="col-md-2 bg-primary">Image here</div>
-            <div class="col-md-10 bg-info">Comment Here</div>
+            <div class="bg-info d-flex justify-content-center align-items-center rounded-circle p-1 px-3"><b>{{comment.user.username|slice:"0:1"|upper}}</b></div>
+            <div class="col-md-11 ">
+                <b>{{comment.user.username}}</b> at {{comment.timeStamp}}
+                <div>{{comment.comment}}</div>
+            </div>
         </div>
+        {% endfor %}
     </div>
 
 {% endblock body %}
