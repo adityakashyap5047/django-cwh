@@ -31,14 +31,27 @@
         <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
       </form>
       <a role="button" href="/admin" target="_blank" class="btn btn-info m-2 my-sm-0" type="submit">Delete it</a>
-      <!-- Button to trigger login modal -->
-      <button type="button" class="btn btn-info mx-2" data-toggle="modal" data-target="#loginModal">
-        Login
-      </button>
-      <!-- Button to trigger signup modal -->
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#signupModal">
-        Signup
-      </button>
+      {% if not user.is_authenticated %}
+        <!-- Button to trigger login modal -->
+        <button type="button" class="btn btn-info mx-2" data-toggle="modal" data-target="#loginModal">
+          Login
+        </button>
+        <!-- Button to trigger signup modal -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#signupModal">
+          Signup
+        </button>
+      {% else %}
+        <ul class="navbar-nav mx-4">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+              Welcome {{request.user}}
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      {% endif %}
     </div>
   </nav>
 
