@@ -15,17 +15,24 @@
     </div>
     <div class="container">
         <h2>Comments - {{comments.count}}</h2>
-        <form action="/blog/postComment" method="post">{% csrf_token %}
-            <div class="mb-3 form-group">
-                <label for="comment" class="form-label">Comment</label>
-                <input type="text" name="comment" class="form-control" id="comment" placeholder="Write a Comment" required>
-            </div>
-            <div class="mb-3 form-group">
-                <input type="hidden" name="postSno" value="{{post.sno}}">
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-              
-        </form>
+        <div class="my-2">
+            {% if not user.is_authenticated %}
+                <div class="alert alert-warning" role="alert">
+                    Please login to Post a Comment
+                </div>
+            {% else %}
+                <form action="/blog/postComment" method="post">{% csrf_token %}
+                    <div class="mb-3 form-group">
+                        <label for="comment" class="form-label">Comment</label>
+                        <input type="text" name="comment" class="form-control" id="comment" placeholder="Write a Comment" required>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <input type="hidden" name="postSno" value="{{post.sno}}">
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            {% endif %}
+        </div>
         {% for comment in comments %}
         <div class="row my-3">
             <div class="bg-info d-flex justify-content-center align-items-center rounded-circle p-1 px-3"><b>{{comment.user.username|slice:"0:1"|upper}}</b></div>

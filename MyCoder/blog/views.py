@@ -12,7 +12,7 @@ def home(request):
 def blogPost(request, slug):
     post = Post.objects.get(slug=slug)
     comments = BlogComment.objects.filter(post=post)
-    context = {'post': post, 'comments': comments}
+    context = {'post': post, 'comments': comments, 'user': request.user}
     return render(request, 'blog/blogPost.html', context)
 
 # APIs
