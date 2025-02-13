@@ -4,6 +4,8 @@
 
 {% block body %}
 
+    {% load humanize %}
+
     <div class="container my-4">
         <div class="blog-post">
             <h2 class="blog-post-title">{{post.title}}</h2>
@@ -37,7 +39,7 @@
         <div class="row my-3">
             <div class="bg-info d-flex justify-content-center align-items-center rounded-circle p-1 px-3"><b>{{comment.user.username|slice:"0:1"|upper}}</b></div>
             <div class="col-md-11 ">
-                <b>{{comment.user.username}}</b> at {{comment.timeStamp}}
+                <b>{{comment.user.username}}</b><span class="badge badge-secondary ml-2">{{comment.timeStamp|naturaltime}}</span>
                 <div>{{comment.comment}}</div>
             </div>
         </div>
