@@ -26,12 +26,12 @@ def about(request):
 def search(request):
     search = request.GET.get('search')
     if len(search) > 75:
-        searchPosts = []
+        searchPosts = Post.objects.none()
     else:
         searchPostsTitle = Post.objects.filter(title__icontains=search)
         searchPostsContent = Post.objects.filter(content__icontains=search)
         searchPosts = searchPostsTitle.union(searchPostsContent)
     if searchPosts.count() == 0:
-        messages.error(request, "No Search results find. Please search the relevant tags!")
+        messages.warning(request, "No Search results find. Please search the relevant tags!")
     context = {'searchPosts': searchPosts, 'search': search}
     return render(request, 'home/search.html', context)
