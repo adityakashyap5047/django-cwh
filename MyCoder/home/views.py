@@ -25,6 +25,9 @@ def about(request):
 
 def search(request):
     search = request.GET.get('search')
-    searchPosts = Post.objects.filter(title__icontains=search)
+    if len(search) > 75:
+        searchPosts = []
+    else:
+        searchPosts = Post.objects.filter(title__icontains=search)
     context = {'searchPosts': searchPosts, 'search': search}
     return render(request, 'home/search.html', context)
