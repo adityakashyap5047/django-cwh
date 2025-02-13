@@ -30,17 +30,38 @@
                     </div>
                     <div class="mb-3 form-group">
                         <input type="hidden" name="postSno" value="{{post.sno}}">
+                        <input type="hidden" name="parentSno" value="">
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             {% endif %}
         </div>
         {% for comment in comments %}
-        <div class="row my-3">
+        <div class="m-3 row">
             <div class="bg-info d-flex justify-content-center align-items-center rounded-circle p-1 px-3"><b>{{comment.user.username|slice:"0:1"|upper}}</b></div>
             <div class="col-md-11 ">
                 <b>{{comment.user.username}}</b><span class="badge badge-secondary ml-2">{{comment.timeStamp|naturaltime}}</span>
                 <div>{{comment.comment}}</div>
+            </div>
+            <div class="reply mx-5 my-2 col-md-11">
+                <button class="btn btn-primary btn-sm mb-2" type="button" data-toggle="collapse" data-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+                    Reply
+                </button>
+                <div class="collapse" id="replyBox{{comment.sno}}">
+                <div class="card card-body">
+                    <form action="/blog/postComment" method="post">{% csrf_token %}
+                        <div class="mb-3 form-group">
+                            <label for="reply{{comment.sno}}" class="form-label col-md-10">Reply</label>
+                            <input type="text" name="reply" class="form-control" id="reply{{comment.sno}}" placeholder="Write a Comment" required>
+                            <input type="hidden" name="parentSno" value="{{comment.sno}}">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <input type="hidden" name="postSno" value="{{post.sno}}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+                </div>
             </div>
         </div>
         {% endfor %}
