@@ -12,6 +12,8 @@ def home(request):
 
 def blogPost(request, slug):
     post = Post.objects.get(slug=slug)
+    post.views = post.views + 1
+    post.save()
     comments = BlogComment.objects.filter(post=post, parent=None)
     replies = BlogComment.objects.filter(post=post).exclude(parent=None)
     repDict = {}

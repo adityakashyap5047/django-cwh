@@ -2,6 +2,8 @@
 
 {% block title %}Post - {% endblock title %}
 
+{% comment %} We can tinymce for editing and creating new post {% endcomment %}
+
 {% block body %}
 
     {% load humanize %}
@@ -10,7 +12,7 @@
     <div class="container my-4">
         <div class="blog-post">
             <h2 class="blog-post-title">{{post.title}}</h2>
-            <p class="blog-post-meta">{{post.timeStamp}} by <strong class="text-success">{{post.author}}</strong></p>
+            <p class="blog-post-meta">{{post.timeStamp}} by <strong class="text-success">{{post.author}}</strong><span> ({{post.views}} views)</span></p>
             <hr>
             <p>{{post.content}}</p>
             
