@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyser</title>
+</head>
+<body>
+    <h3>Welcome to the text analyser. Enter your text below</h3>
+    <form action="/analyse" method="get">
+
+        <textarea name="text" style="margin: 0px; width: 721px; height: 93px;"></textarea>
+        <br>
+        <input type="checkbox" name="removepunc">Remove Punctuations<br>
+        <input type="checkbox" name="fullcaps">Upper Case<br>
+        <input type="checkbox" name="newlineremover">New Line Remover<br>
+        <input type="checkbox" name="extraspaceremover">Extra Space remover<br>
+        <input type="checkbox" name="charcount">Character Count<br>
+        <button type="submit">Analyse text</button>
+    </form>
+</body>
+</html>
